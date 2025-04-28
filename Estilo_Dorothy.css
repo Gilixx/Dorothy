@@ -227,43 +227,64 @@ nav {
   background-color: var(--accent-color);
 }
 
-/* Línea animada */
 #LineaConten {
-  overflow-x: hidden;
-  width: 100%;
   position: relative;
+  width: 100%;
   height: 350px;
-  margin: 30px 0;
+  overflow: hidden;
 }
 
-#LineaMover {
-  z-index: 2;
-  user-select: none;
+/* Contenedor del texto "SIGUE LA LINEA" */
+.texto-contenedor {
+  position: relative;
+  width: 100%;
+  height: 100%;
   display: flex;
-  white-space: nowrap;
-  font-size: 100px;
-  color: var(--accent-color);
-  opacity: 0.2;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #TextMover, #TextMover_2 {
-  z-index: 3;
-  user-select: none;
   position: absolute;
   white-space: nowrap;
-  font-size: 180px;
-  -webkit-text-stroke: 2px var(--accent-color);
+  font-size: 200px;
+  -webkit-text-stroke: 2px white;
   color: transparent;
-  transition: opacity 0.05s ease, transform 0.5s ease;
+  transition: transform 0.3s linear;
+  padding: 0 50px; /* Añadimos padding para evitar que se junten */
 }
 
-/* Añadí esta animación que faltaba para las flechas */
-@keyframes moverTexto {
-  from {
-    transform: translateX(-100%);
+/* Contenedor de las flechas */
+.flechas-contenedor {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.linea-flechas {
+  font-size: 100px;
+  color: rgb(255, 255, 255);
+  opacity: 0.1;
+  white-space: nowrap;
+  margin: 10px 0;
+}
+
+/* Media queries para ajustar tamaños en dispositivos móviles */
+@media (max-width: 767px) {
+  #LineaConten {
+      height: 180px;
   }
-  to {
-    transform: translateX(80%);
+  
+  #TextMover, #TextMover_2 {
+      font-size: 100px;
+      -webkit-text-stroke: 1px white;
+      padding: 0 30px;
+  }
+  
+  .linea-flechas {
+      font-size: 55px;
   }
 }
 

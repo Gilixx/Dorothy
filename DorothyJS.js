@@ -1,75 +1,109 @@
-const text1 = document.getElementById('TextMover');
-const text2 = document.getElementById('TextMover_2');
-const lineaSpeed = 1;
-let posicion1, posicion2;
-let size_linea = true;
-
-function initializeTextPositions() {
-    if (window.innerWidth <= 767) {
-        posicion1 = window.innerWidth * 0.5;
-        posicion2 = -window.innerWidth * 0.5;
-        size_linea = false;
-    } else {
-        posicion1 = text2.offsetWidth * 0.7;
-        posicion2 = -text2.offsetWidth * 0.7;
-        size_linea = true;
+// Función para manejar la animación del texto "SIGUE LA LINEA"
+function setupTextAnimation() {
+    const text1 = document.getElementById('TextMover');
+    const text2 = document.getElementById('TextMover_2');
+    
+    if (!text1 || !text2) return;
+    
+    const container = document.getElementById('LineaConten');
+    const containerWidth = container.offsetWidth;
+    
+    // Velocidad de movimiento
+    const speed = 1.5;
+    
+    // Calculamos anchos de texto
+    const textWidth = text1.offsetWidth;
+    
+    // Posiciones iniciales
+    let position1 = containerWidth;
+    let position2 = position1 + textWidth + 100; // Espacio entre textos
+    
+    // Establecemos posiciones iniciales
+    text1.style.transform = `translateX(${position1}px)`;
+    text2.style.transform = `translateX(${position2}px)`;
+    
+    // Función de animación para el primer texto
+    function animateText1() {
+        position1 -= speed;
+        
+        // Reiniciar posición cuando sale completamente de la pantalla
+        if (position1 < -textWidth) {
+            position1 = position2 + textWidth + 100;
+        }
+        
+        text1.style.transform = `translateX(${position1}px)`;
+        requestAnimationFrame(animateText1);
     }
     
-    text1.style.transform = `translateX(${posicion1}px)`;
-    text2.style.transform = `translateX(${posicion2}px)`;
-}
-
-function moverTexto1() {
-    posicion1 -= lineaSpeed;
-    
-    // Cuando el texto sale completamente por la izquierda
-    if (posicion1 < -text1.offsetWidth) {
-        // Calcular la nueva posición basada en la posición actual del segundo texto
-        // Colocarlo a la derecha de la pantalla, a una distancia del ancho de la ventana
-        posicion1 = window.innerWidth;
+    // Función de animación para el segundo texto
+    function animateText2() {
+        position2 -= speed;
         
-        // Actualizar la posición sin transición para evitar efecto visual
-        text1.style.transition = 'none';
-        text1.style.transform = `translateX(${posicion1}px)`;
+        // Reiniciar posición cuando sale completamente de la pantalla
+        if (position2 < -textWidth) {
+            position2 = position1 + textWidth + 100;
+        }
         
-        // Restaurar la transición después de un pequeño retraso
-        setTimeout(() => {
-            text1.style.transition = 'transform 0.5s ease';
-        }, 50);
-    } else {
-        text1.style.transform = `translateX(${posicion1}px)`;
+        text2.style.transform = `translateX(${position2}px)`;
+        requestAnimationFrame(animateText2);
     }
     
-    requestAnimationFrame(moverTexto1);
+    // Iniciar animaciones
+    animateText1();
+    animateText2();
+    
+    // Manejar cambios de tamaño de ventana
+    window.addEventListener('resize', () => {
+        const newContainerWidth = container.offsetWidth;
+        const newTextWidth = text1.offsetWidth;
+        
+        // Reposicionar si está fuera de la vista
+        if (position1 < -newTextWidth) {
+            position1 = newContainerWidth;
+        }
+        
+        if (position2 < -newTextWidth) {
+            position2 = newContainerWidth;
+        }
+        
+        // Si las posiciones están muy juntas, separarlas
+        const gap = Math.abs(position1 - position2);
+        if (gap < newTextWidth) {
+            if (position1 < position2) {
+                position2 = position1 + newTextWidth + 100;
+            } else {
+                position1 = position2 + newTextWidth + 100;
+            }
+        }
+        
+        // Actualizar posiciones
+        text1.style.transform = `translateX(${position1}px)`;
+        text2.style.transform = `translateX(${position2}px)`;
+    });
 }
 
-function moverTexto2() {
-    posicion2 -= lineaSpeed;
-    
-    if (posicion2 < -text2.offsetWidth) {
-       
-        posicion2 = window.innerWidth;
-        
-        
-        text2.style.transition = 'none';
-        text2.style.transform = `translateX(${posicion2}px)`;
-        
-        
-        setTimeout(() => {
-            text2.style.transition = 'transform 0.5s ease';
-        }, 50);
-    } else {
-        text2.style.transform = `translateX(${posicion2}px)`;
-    }
-    
-    requestAnimationFrame(moverTexto2);
-}
-
+// Función para animar las flechas
 function setupArrowsAnimation() {
-    const lineasFlechas = document.querySelectorAll('#LineaMover');
+    const lineasFlechas = document.querySelectorAll('.linea-flechas');
     
     lineasFlechas.forEach((linea, index) => {
-        linea.style.animation = `moverFlechas ${15 + index*2}s linear infinite`;
+        // Posición inicial
+        let position = -100;
+        const speed = 0.2; // Velocidades ligeramente diferentes para cada línea
+        
+        function animateArrow() {
+            position += speed;
+            
+            // Reiniciar cuando llega al final
+            if (position > 100) {
+                position = -100;
+            }
+            
+            linea.style.transform = `translateX(${position}%)`;
+            requestAnimationFrame(animateArrow);
+        }
+        
+        animateArrow();
     });
 }
 
@@ -185,26 +219,49 @@ window.onclick = function(e) {
 };
 
 window.addEventListener('DOMContentLoaded', () => {
-    initializeTextPositions();
-    
-    moverTexto1();
-    moverTexto2();
-    
+    // Inicializar animación de texto y flechas
+    setupTextAnimation();
     setupArrowsAnimation();
     
+    // Inicializar posiciones de versiones
     inicializarPosicionesVers();
     moverVersiones();
     
+    // Efectos de aparición si existen elementos con la clase fade-in
     const mainElements = document.querySelectorAll('.fade-in');
     mainElements.forEach((el, index) => {
         setTimeout(() => {
             el.classList.add('visible');
         }, 200 * index);
     });
+    
+    // Inicializar el slider si existe
+    if (document.querySelector('.slider-track')) {
+        const slider = new EvolucionSlider();
+        
+        window.addEventListener('scroll', () => {
+            const evolucionSection = document.querySelector('.evolucion-seccion');
+            if (!evolucionSection) return;
+            
+            const rect = evolucionSection.getBoundingClientRect();
+            const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+            
+            if (isVisible) {
+                const scrollPosition = window.scrollY;
+                const parallaxElements = document.querySelectorAll('.slide-image img');
+                
+                parallaxElements.forEach(el => {
+                    const speed = 0.05;
+                    const yPos = -(scrollPosition * speed);
+                    el.style.transform = `translateY(${yPos}px)`;
+                });
+            }
+        });
+    }
 });
 
 window.addEventListener('resize', () => {
-    initializeTextPositions();
+    // Actualización en cambios de tamaño de ventana
     inicializarPosicionesVers();
 });
 
@@ -224,7 +281,8 @@ class EvolucionSlider {
         this.currentTranslate = 0;
         this.prevTranslate = 0;
         this.animationID = 0;
-        this.autoplayInterval = null;
+        
+        // Sin autoplay
         
         this.init();
     }
@@ -254,11 +312,7 @@ class EvolucionSlider {
             if (e.key === 'ArrowRight') this.goToSlide(this.currentIndex + 1);
         });
         
-        this.startAutoplay();
-        
-        const sliderContainer = document.querySelector('.slider-container');
-        sliderContainer.addEventListener('mouseenter', () => this.stopAutoplay());
-        sliderContainer.addEventListener('mouseleave', () => this.startAutoplay());
+        // Sin autoplay
         
         window.addEventListener('resize', this.debounce(() => {
             this.updateSlider();
@@ -273,8 +327,7 @@ class EvolucionSlider {
         
         this.updateSlider();
         
-        this.stopAutoplay();
-        this.startAutoplay();
+        // Sin autoplay
     }
     
     updateSlider() {
@@ -361,15 +414,7 @@ class EvolucionSlider {
         if (this.isDragging) requestAnimationFrame(this.animation.bind(this));
     }
     
-    startAutoplay() {
-        this.autoplayInterval = setInterval(() => {
-            this.goToSlide(this.currentIndex + 1);
-        }, 5000);
-    }
-    
-    stopAutoplay() {
-        clearInterval(this.autoplayInterval);
-    }
+    // Sin métodos de autoplay
     
     debounce(func, wait) {
         let timeout;
@@ -383,26 +428,3 @@ class EvolucionSlider {
         };
     }
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    if (document.querySelector('.slider-track')) {
-        const slider = new EvolucionSlider();
-        
-        window.addEventListener('scroll', () => {
-            const evolucionSection = document.querySelector('.evolucion-seccion');
-            const rect = evolucionSection.getBoundingClientRect();
-            const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-            
-            if (isVisible) {
-                const scrollPosition = window.scrollY;
-                const parallaxElements = document.querySelectorAll('.slide-image img');
-                
-                parallaxElements.forEach(el => {
-                    const speed = 0.05;
-                    const yPos = -(scrollPosition * speed);
-                    el.style.transform = `translateY(${yPos}px)`;
-                });
-            }
-        });
-    }
-});
