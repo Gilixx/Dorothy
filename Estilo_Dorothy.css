@@ -164,12 +164,13 @@ nav {
 
 #inicio video {
   width: 98%;
-  height: 500px;
+  height: 450px;
   border-radius: var(--border-radius);
   object-fit: cover;
   position: absolute;
   z-index: -1;
   opacity: 0.8;
+  margin-top: 40px;
 }
 
 #inicio h1 {
