@@ -258,7 +258,7 @@ nav {
 .flechas-contenedor {
   position: absolute;
   width: 100%;
-  top: 50%;
+  top: 43%;
   transform: translateY(-50%);
   z-index: 1;
 }
