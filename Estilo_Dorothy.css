@@ -250,7 +250,6 @@ nav {
   font-size: 200px;
   -webkit-text-stroke: 2px white;
   color: transparent;
-  transition: transform 0.3s linear;
   padding: 0 50px; /* Añadimos padding para evitar que se junten */
 }
 
