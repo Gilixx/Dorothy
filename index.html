@@ -17,7 +17,7 @@
         <nav>
             <ul id="topNav">
                 <li><img src="Source/Icono_1.png" id="logo" alt="Logo Dorothy"></li>
-                <li><a href="https://korshyn.internetdigital.net/Integrador/Dorothy.html">Dorothy</a></li>
+                <li><a href="https://gilixx.github.io/Dorothy/">Dorothy</a></li>
                 <li class="right navBig"><button onclick="scrollToPos('Componentes')">Componentes</button></li>
                 <li class="navBig"><button onclick="scrollToPos('Portaf')">Developers</button></li>
                 <li class="right" id="navSmall">
@@ -164,7 +164,7 @@
                 <h3 class="componente-title">Motores-reductores</h3>
                 <p class="componente-description">Disminuyen la velocidad de un motor y controlan la fuerza, lo que permite girar o reducir velocidad. Son esenciales para la precisión en los movimientos, especialmente en las curvas y cambios de dirección.</p>
                 <div class="componente-image">
-                    <img src="Source/Motor-reductor.png" alt="Motores-reductores para Dorothy">
+                    <img src="Source/Captura_de_pantalla_2025-05-03_222041-removebg-preview.png" alt="Motores-reductores para Dorothy">
                 </div>
             </div>
         </div>
@@ -234,116 +234,172 @@
     </div>   
 </section>
 
-<div class="evolucion-seccion">
-    <div class="evolucion-header">
-        <h1 class="evolucion-title">
-            <span class="plus-symbol">+</span>
-            <span>EVOLUCIÓN DEL PROYECTO</span>
-        </h1>
-        <p class="evolucion-subtitle">Desde prototipos hasta el modelo final, nuestro robot ha evolucionado a través de varias versiones</p>
+<!-- Sección de evolución del proyecto - Nuevo diseño -->
+<section class="timeline-section" id="Evolucion">
+    <div class="timeline-header">
+      <h2 class="timeline-title">Evolución del Proyecto</h2>
+      <p class="timeline-subtitle">Desde la conceptualización hasta el modelo final</p>
     </div>
     
-    <div class="slider-container">
-        <button class="nav-btn prev-btn" aria-label="Versión anterior">
-            <svg viewBox="0 0 24 24" width="24" height="24">
-                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
-            </svg>
+    <div class="timeline-container">
+      <div class="timeline-navigation">
+        <button class="timeline-arrow timeline-prev" aria-label="Versión anterior">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+          </svg>
         </button>
-        <button class="nav-btn next-btn" aria-label="Versión siguiente">
-            <svg viewBox="0 0 24 24" width="24" height="24">
-                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
-            </svg>
+        <button class="timeline-arrow timeline-next" aria-label="Versión siguiente">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+          </svg>
         </button>
-        
-        <div class="slider-track">
-            <div class="slider-slide" data-version="1">
-                <div class="slide-content">
-                    <div class="slide-image">
-                        <img src="Source/VR1.jpeg" alt="Dorothy Versión 1">
-                    </div>
-                    <div class="slide-info">
-                        <span class="version-badge">V.1</span>
-                        <h3>Primer Prototipo</h3>
-                        <p>Nuestro primer acercamiento al concepto del robot seguidor de línea, enfocado en probar los sensores básicos.</p>
-                    </div>
-                </div>
+      </div>
+      
+      <div class="timeline-progress">
+        <div class="timeline-track"></div>
+        <div class="timeline-progress-bar"></div>
+        <div class="timeline-markers">
+          <button class="timeline-marker active" data-index="0">
+            <span class="marker-dot"></span>
+            <span class="marker-label">V.1</span>
+          </button>
+          <button class="timeline-marker" data-index="1">
+            <span class="marker-dot"></span>
+            <span class="marker-label">V.2</span>
+          </button>
+          <button class="timeline-marker" data-index="2">
+            <span class="marker-dot"></span>
+            <span class="marker-label">V.3</span>
+          </button>
+          <button class="timeline-marker" data-index="3">
+            <span class="marker-dot"></span>
+            <span class="marker-label">V.4</span>
+          </button>
+          <button class="timeline-marker" data-index="4">
+            <span class="marker-dot"></span>
+            <span class="marker-label">Final</span>
+          </button>
+        </div>
+      </div>
+      
+      <div class="timeline-slider">
+        <div class="timeline-slide active" data-index="0">
+          <div class="timeline-card">
+            <div class="card-media">
+              <div class="card-image">
+                <img src="Source/VR1.jpeg" alt="Dorothy Versión 1 - Prototipo Inicial">
+              </div>
+              <div class="card-tag">V.1</div>
             </div>
-            
-            <div class="slider-slide" data-version="2">
-                <div class="slide-content">
-                    <div class="slide-image">
-                        <img src="Source/VR2.jpeg" alt="Dorothy Versión 2">
-                    </div>
-                    <div class="slide-info">
-                        <span class="version-badge">V.2</span>
-                        <h3>Mejoras en Chasis</h3>
-                        <p>Rediseño del chasis para mejor estabilidad y optimización de la distribución de componentes.</p>
-                    </div>
-                </div>
+            <div class="card-content">
+              <h3 class="card-title">Primer Prototipo</h3>
+              <p class="card-date">Marzo 2025</p>
+              <div class="card-description">
+                <p>Nuestro primer acercamiento al concepto del robot seguidor de línea. En esta etapa nos enfocamos en probar los sensores básicos y la estructura inicial para evaluar su viabilidad.</p>
+              </div>
+              <ul class="card-features">
+                <li>Sensores básicos</li>
+                <li>Estructura temporal</li>
+                <li>Pruebas de concepto</li>
+              </ul>
             </div>
-            
-            <div class="slider-slide" data-version="3">
-                <div class="slide-content">
-                    <div class="slide-image">
-                        <img src="Source/VR3.jpeg" alt="Dorothy Versión 3">
-                    </div>
-                    <div class="slide-info">
-                        <span class="version-badge">V.3</span>
-                        <h3>Integración de Sensores</h3>
-                        <p>Implementación de la barra de 16 sensores para mejorar la precisión del seguimiento de línea.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slider-slide" data-version="5">
-                <div class="slide-content">
-                    <div class="slide-image">
-                        <img src="Source/Motor-reductor.png" alt="Dorothy Versión 5">
-                    </div>
-                    <div class="slide-info">
-                        <span class="version-badge">V.5</span>
-                        <h3>Prototipo Avanzado</h3>
-                        <p>Integración de motores-reductores de alta eficiencia y ajustes finales del chasis.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="slider-slide" data-version="final">
-                <div class="slide-content">
-                    <div class="slide-image">
-                        <img src="Source/Icono.png" alt="Dorothy Versión Final">
-                    </div>
-                    <div class="slide-info">
-                        <span class="version-badge">FINAL</span>
-                        <h3>Dorothy</h3>
-                        <p>Versión final con todos los componentes optimizados y algoritmos refinados para máximo rendimiento.</p>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
         
-        <div class="slider-indicators">
-            <button class="indicator-dot active" data-slide="0" aria-label="Ver versión 1"></button>
-            <button class="indicator-dot" data-slide="1" aria-label="Ver versión 2"></button>
-            <button class="indicator-dot" data-slide="2" aria-label="Ver versión 3"></button>
-            <button class="indicator-dot" data-slide="3" aria-label="Ver versión 4"></button>
-            <button class="indicator-dot" data-slide="4" aria-label="Ver versión 5"></button>
-        </div>
-    </div>
-    
-    <div class="timeline">
-        <div class="timeline-track">
-            <div class="timeline-line"></div>
-            <div class="timeline-markers">
-                <div class="timeline-marker" data-version="1">V.1</div>
-                <div class="timeline-marker" data-version="2">V.2</div>
-                <div class="timeline-marker" data-version="3">V.3</div>
-                <div class="timeline-marker" data-version="4">V.4</div>
-                <div class="timeline-marker" data-version="5">V.5</div>
+        <div class="timeline-slide" data-index="1">
+          <div class="timeline-card">
+            <div class="card-media">
+              <div class="card-image">
+                <img src="Source/VR2.jpeg" alt="Dorothy Versión 2 - Mejoras en Chasis">
+              </div>
+              <div class="card-tag">V.2</div>
             </div>
+            <div class="card-content">
+              <h3 class="card-title">Mejoras en Chasis</h3>
+              <p class="card-date">Marzo 2025</p>
+              <div class="card-description">
+                <p>Rediseñamos el chasis para mejorar la estabilidad y optimizar la distribución de componentes, logrando un mejor desempeño en diferentes superficies.</p>
+              </div>
+              <ul class="card-features">
+                <li>Chasis rediseñado</li>
+                <li>Mayor estabilidad</li>
+                <li>Mejor distribución de peso</li>
+              </ul>
+            </div>
+          </div>
         </div>
+        
+        <div class="timeline-slide" data-index="2">
+          <div class="timeline-card">
+            <div class="card-media">
+              <div class="card-image">
+                <img src="Source/VR3.jpeg" alt="Dorothy Versión 3 - Integración de Sensores">
+              </div>
+              <div class="card-tag">V.3</div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Integración de Sensores</h3>
+              <p class="card-date">Abril 2025</p>
+              <div class="card-description">
+                <p>Implementamos la barra de 16 sensores para mejorar la precisión del seguimiento de línea, aumentando considerablemente la capacidad de respuesta ante curvas y cambios de dirección.</p>
+              </div>
+              <ul class="card-features">
+                <li>Barra de 16 sensores IR</li>
+                <li>Mayor precisión</li>
+                <li>Mejor respuesta en curvas</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="timeline-slide" data-index="3">
+          <div class="timeline-card">
+            <div class="card-media">
+              <div class="card-image">
+                <img src="Source/WhatsApp Image 2025-04-30 at 8.13.22 AM (1).jpeg" alt="Dorothy Versión 4 - Prototipo Avanzado">
+              </div>
+              <div class="card-tag">V.4</div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Prototipo Avanzado</h3>
+              <p class="card-date">Abril 2025</p>
+              <div class="card-description">
+                <p>Integramos motores-reductores de alta eficiencia y realizamos ajustes finales del chasis, mejorando el rendimiento general y la autonomía del robot.</p>
+              </div>
+              <ul class="card-features">
+                <li>Motores-reductores avanzados</li>
+                <li>Ajustes finales del chasis</li>
+                <li>Mayor eficiencia energética</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="timeline-slide" data-index="4">
+          <div class="timeline-card">
+            <div class="card-media">
+              <div class="card-image">
+                <img src="Source/WhatsApp Image 2025-04-30 at 8.13.22 AM.jpeg" alt="Dorothy Versión Final">
+              </div>
+              <div class="card-tag">Final</div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Dorothy</h3>
+              <p class="card-date">Mayo 2025</p>
+              <div class="card-description">
+                <p>Versión final con todos los componentes optimizados y algoritmos refinados para máximo rendimiento. Dorothy es capaz de seguir líneas a alta velocidad y tomar decisiones autónomas.</p>
+              </div>
+              <ul class="card-features">
+                <li>Algoritmos optimizados</li>
+                <li>Máxima velocidad y precisión</li>
+                <li>Autonomía completa</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </section>
 
 <section class="container fade-in" id="SobreNosotros">
     <div class="plus-icon">+</div>
